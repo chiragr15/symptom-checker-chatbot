@@ -99,7 +99,7 @@ class SymptomRetrievalModel:
 ########################### UNIT TEST #####################################
 
 if __name__ == "__main__":
-    model = SymptomRetrievalModel()
+    model = SymptomRetrievalModel(cache_embeddings=False)  # Force regeneration of embeddings
     print(" Symptom-to-Disease Retrieval Tool (type 'exit' to quit)")
 
     while True:
