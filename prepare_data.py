@@ -46,6 +46,13 @@ df_disease = pd.read_csv('data/cleaned_symptom_disease.csv')
 print(df_disease.head(10))
 print(df_disease.shape)
 print(df_disease['Symptom'].nunique(), "unique symptoms")
+unique_symptoms = df_disease['Symptom'].unique()
+# Create a DataFrame to save unique symptoms
+unique_symptoms_df = pd.DataFrame(unique_symptoms, columns=['Symptom'])
+# Save symptom vocabulary to CSV
+unique_symptoms_df.to_csv('data/symptom_vocabulary.csv', index=False)
+print("✅ Saved symptom_vocabulary.csv")
+
 print(df_disease['Disease'].nunique(), "unique diseases")
 df_severity = pd.read_csv('data/cleaned_symptom_severity.csv')
 print(df_severity.head(10))

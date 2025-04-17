@@ -11,8 +11,9 @@ import re
 
 
 class SymptomRetrievalModel:
-    def __init__(self, data_path="data/cleaned_symptom_disease.csv", cache_embeddings=True):
+    def __init__(self, data_path="data/cleaned_symptom_disease.csv", symptom_vocab_path="data/symptom_vocabulary.csv", cache_embeddings=True):
         self.df = pd.read_csv(data_path).drop_duplicates(subset=['Symptom', 'Disease'])
+        self.symptom_vocab_list = pd.read_csv(symptom_vocab_path)['Symptom'].tolist()
         self.model = SentenceTransformer('all-MiniLM-L6-v2')
         self.cache_path = "data/symptom_embeddings.pkl"
         self.cache_embeddings = cache_embeddings
@@ -40,16 +41,7 @@ class SymptomRetrievalModel:
             return match
         return None  # No confident match
 
-    def preprocess_input(self, raw_input):
-        """Normalize multi-line and comma-separated input into a list of symptoms"""
-        raw_input = raw_input.replace('\n', ',').replace('\r', ',')
-        tokens = [s.strip().lower() for s in raw_input.split(',') if s.strip()]
-        corrected = [self.correct_symptom_spelling(s) for s in tokens]
-        return [s for s in corrected if s is not None]
-
-    def get_disease_predictions(self, user_input, top_k=5):
-        user_symptoms = self.preprocess_input(user_input)
-
+    def get_disease_predictions(self, user_symptoms, top_k=5):
         if not user_symptoms:
             return []  # no valid symptoms after spell correction
 
@@ -95,6 +87,67 @@ class SymptomRetrievalModel:
                 seen[item['disease']] = item
 
         return sorted(seen.values(), key=lambda x: x['score'], reverse=True)[:top_k]
+    
+    def extract_words_and_phrases_from_sentence(self, sentence, threshold=80):
+
+        NEGATION_WORDS = {"not","no","never","nothing",
+            "don't","dont","didn't","didnt",
+            "isn't","isnt","wasn't","wasnt",
+            "aren't","arent","can't","cant",
+            "couldn't","couldnt","won't","wont",
+            "shouldn't","shouldnt","wouldn't","wouldnt",
+            "haven't","havent","hasn't","hasnt","hadn't","hadnt"}
+
+        TOKEN_RE   = re.compile(r"\b\w+(?:'\w+)?\b")
+
+        vocab        = self.symptom_vocab_list
+        single_words = [v for v in vocab if "_" not in v]
+        phrases      = [v for v in vocab if "_" in v]
+
+        matched_words, matched_phrases = [], []
+
+        # split text into clauses by punctuation that usually ends / separates thoughts
+        clauses = re.split(r"[.;,:!?]", sentence.lower())
+
+        for clause in clauses:
+            if not clause.strip():          # skip empty splits
+                continue
+
+            tokens = TOKEN_RE.findall(clause)
+
+            # Check if clause is negated
+            clause_negated = any(tok in NEGATION_WORDS for tok in tokens)
+            if clause_negated:
+                continue                    # skip everything in a negated clause
+
+            # single‑word matching
+            for tok in tokens:
+                hit = process.extractOne(tok, single_words, scorer=fuzz.ratio)
+                if hit and hit[1] >= threshold:
+                    matched_words.append(hit[0])
+
+            # multi‑word phrase matching (order‑free)
+            for phrase in phrases:
+                parts = phrase.split('_')
+                # each part must fuzzy‑match some token in this clause
+                ok = True
+                for part in parts:
+                    best = process.extractOne(part, tokens, scorer=fuzz.ratio)
+                    if not best or best[1] < threshold:
+                        ok = False
+                        break
+                if ok:
+                    matched_phrases.append(phrase)
+                    # remove constituent single‑word matches we already counted
+                    for part in parts:
+                        if part in matched_words:
+                            matched_words.remove(part)
+
+        # deduplicate (in case the same symptom appears in several clauses)
+        matched_words   = list(dict.fromkeys(matched_words))
+        matched_phrases = list(dict.fromkeys(matched_phrases))
+
+        return matched_words + matched_phrases
 
 ########################### UNIT TEST #####################################
 
@@ -103,11 +156,16 @@ if __name__ == "__main__":
     print(" Symptom-to-Disease Retrieval Tool (type 'exit' to quit)")
 
     while True:
-        user_input = input("\nEnter symptoms (comma or newline-separated):\n")
+        user_input = input("\nEnter symptoms:\n")
         if user_input.lower() in ['exit', 'quit']:
             break
 
-        predictions = model.get_disease_predictions(user_input)
+        user_symptoms = model.extract_words_and_phrases_from_sentence(user_input)
+
+        print("Matched symptoms:\n")
+        print(user_symptoms)
+
+        predictions = model.get_disease_predictions(user_symptoms)
         if not predictions:
             print(" No matching symptoms or diseases found. Try rephrasing.")
         else:
