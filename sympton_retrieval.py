@@ -8,6 +8,7 @@ import os
 import pickle
 from rapidfuzz import process, fuzz
 import re
+from symptom_utils import extract_symptoms_from_sentence
 
 
 class SymptomRetrievalModel:
@@ -23,23 +24,22 @@ class SymptomRetrievalModel:
 
         # Load or compute embeddings
         if self.cache_embeddings and os.path.exists(self.cache_path):
-            with open(self.cache_path, 'rb') as f:
-                self.symptom_embeddings = pickle.load(f)
+            self.symptom_embeddings = self.load_pickle(self.cache_path)
         else:
             self.symptom_embeddings = self.model.encode(self.unique_symptoms, convert_to_tensor=True)
             if self.cache_embeddings:
-                with open(self.cache_path, 'wb') as f:
-                    pickle.dump(self.symptom_embeddings, f)
+                self.save_pickle(self.symptom_embeddings, self.cache_path)
 
         # Mapping from symptom to associated diseases
         self.symptom_to_disease = self.df.groupby("Symptom")["Disease"].apply(list).to_dict()
 
-    def correct_symptom_spelling(self, symptom, threshold=80):
-        """Correct user input using fuzzy matching"""
-        match, score, _ = process.extractOne(symptom, self.unique_symptoms, scorer=fuzz.token_sort_ratio)
-        if score >= threshold:
-            return match
-        return None  # No confident match
+    def load_pickle(self, path):
+        with open(path, 'rb') as f:
+            return pickle.load(f)
+
+    def save_pickle(self, data, path):
+        with open(path, 'wb') as f:
+            pickle.dump(data, f)
 
     def get_disease_predictions(self, user_symptoms, top_k=5):
         if not user_symptoms:
@@ -88,66 +88,8 @@ class SymptomRetrievalModel:
 
         return sorted(seen.values(), key=lambda x: x['score'], reverse=True)[:top_k]
     
-    def extract_words_and_phrases_from_sentence(self, sentence, threshold=80):
-
-        NEGATION_WORDS = {"not","no","never","nothing",
-            "don't","dont","didn't","didnt",
-            "isn't","isnt","wasn't","wasnt",
-            "aren't","arent","can't","cant",
-            "couldn't","couldnt","won't","wont",
-            "shouldn't","shouldnt","wouldn't","wouldnt",
-            "haven't","havent","hasn't","hasnt","hadn't","hadnt"}
-
-        TOKEN_RE   = re.compile(r"\b\w+(?:'\w+)?\b")
-
-        vocab        = self.symptom_vocab_list
-        single_words = [v for v in vocab if "_" not in v]
-        phrases      = [v for v in vocab if "_" in v]
-
-        matched_words, matched_phrases = [], []
-
-        # split text into clauses by punctuation that usually ends / separates thoughts
-        clauses = re.split(r"[.;,:!?]", sentence.lower())
-
-        for clause in clauses:
-            if not clause.strip():          # skip empty splits
-                continue
-
-            tokens = TOKEN_RE.findall(clause)
-
-            # Check if clause is negated
-            clause_negated = any(tok in NEGATION_WORDS for tok in tokens)
-            if clause_negated:
-                continue                    # skip everything in a negated clause
-
-            # single‑word matching
-            for tok in tokens:
-                hit = process.extractOne(tok, single_words, scorer=fuzz.ratio)
-                if hit and hit[1] >= threshold:
-                    matched_words.append(hit[0])
-
-            # multi‑word phrase matching (order‑free)
-            for phrase in phrases:
-                parts = phrase.split('_')
-                # each part must fuzzy‑match some token in this clause
-                ok = True
-                for part in parts:
-                    best = process.extractOne(part, tokens, scorer=fuzz.ratio)
-                    if not best or best[1] < threshold:
-                        ok = False
-                        break
-                if ok:
-                    matched_phrases.append(phrase)
-                    # remove constituent single‑word matches we already counted
-                    for part in parts:
-                        if part in matched_words:
-                            matched_words.remove(part)
-
-        # deduplicate (in case the same symptom appears in several clauses)
-        matched_words   = list(dict.fromkeys(matched_words))
-        matched_phrases = list(dict.fromkeys(matched_phrases))
-
-        return matched_words + matched_phrases
+    def extract_symptoms_from_sentence(self, sentence, threshold=80):
+        return extract_symptoms_from_sentence(sentence, self.symptom_vocab_list, threshold)
 
 ########################### UNIT TEST #####################################
 
@@ -160,7 +102,7 @@ if __name__ == "__main__":
         if user_input.lower() in ['exit', 'quit']:
             break
 
-        user_symptoms = model.extract_words_and_phrases_from_sentence(user_input)
+        user_symptoms = model.extract_symptoms_from_sentence(user_input)
 
         print("Matched symptoms:\n")
         print(user_symptoms)
