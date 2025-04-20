@@ -41,7 +41,8 @@ class SymptomRetrievalModel:
         with open(path, 'wb') as f:
             pickle.dump(data, f)
 
-    def get_disease_predictions(self, user_symptoms, top_k=5):
+    def get_disease_predictions(self, user_input, top_k=5):
+        user_symptoms = extract_symptoms_from_sentence(user_input, self.symptom_vocab_list)
         if not user_symptoms:
             return []  # no valid symptoms after spell correction
 
@@ -87,9 +88,6 @@ class SymptomRetrievalModel:
                 seen[item['disease']] = item
 
         return sorted(seen.values(), key=lambda x: x['score'], reverse=True)[:top_k]
-    
-    def extract_symptoms_from_sentence(self, sentence, threshold=80):
-        return extract_symptoms_from_sentence(sentence, self.symptom_vocab_list, threshold)
 
 ########################### UNIT TEST #####################################
 
@@ -102,12 +100,7 @@ if __name__ == "__main__":
         if user_input.lower() in ['exit', 'quit']:
             break
 
-        user_symptoms = model.extract_symptoms_from_sentence(user_input)
-
-        print("Matched symptoms:\n")
-        print(user_symptoms)
-
-        predictions = model.get_disease_predictions(user_symptoms)
+        predictions = model.get_disease_predictions(user_input)
         if not predictions:
             print(" No matching symptoms or diseases found. Try rephrasing.")
         else:

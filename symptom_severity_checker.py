@@ -13,7 +13,8 @@ class SymptomSeverityChecker:
         self.severity_map = dict(zip(self.df['Symptom'].str.lower(), self.df['SeverityLevel'].str.lower()))
         self.symptom_vocab_list = self.symptoms
 
-    def classify_severity(self, symptoms):
+    def classify_severity(self, user_input):
+        symptoms = extract_symptoms_from_sentence(user_input, self.symptom_vocab_list)
         if not symptoms:
             return []
 
@@ -28,10 +29,6 @@ class SymptomSeverityChecker:
                          if severity in ["moderate", "mild"] else "Unknown severity."
             })
         return results
-    
-    def extract_symptoms_from_sentence(self, sentence, threshold=80):
-        return extract_symptoms_from_sentence(sentence, self.symptom_vocab_list, threshold)
-
 
 ################################################################
 
@@ -44,12 +41,7 @@ if __name__ == "__main__":
         if user_input.lower() in ['exit', 'quit']:
             break
 
-        user_symptoms = checker.extract_symptoms_from_sentence(user_input)
-
-        print("Matched symptoms:\n")
-        print(user_symptoms)
-
-        results = checker.classify_severity(user_symptoms)
+        results = checker.classify_severity(user_input)
         if not results:
             print(" No known symptoms matched. Please try again.")
         else:
