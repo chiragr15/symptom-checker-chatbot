@@ -9,6 +9,7 @@ import pickle
 from rapidfuzz import process, fuzz
 import re
 from symptom_utils import extract_symptoms_from_sentence
+from followup import get_followup_questions
 
 
 class SymptomRetrievalModel:
@@ -107,4 +108,11 @@ if __name__ == "__main__":
             print("\nTop predicted diseases:")
             for p in predictions:
                 print(f" {p['disease']} — matched with '{p['matched_symptom']}' (confidence: {p['confidence']}% - {p['confidence_level']})")
+            
+            matched_symptom = predictions[0]['matched_symptom']
+            followups = get_followup_questions(matched_symptom)
 
+            if followups:
+                print("\n🤖 Follow-up questions:")
+                for q in followups:
+                    print(f"👉 {q}")

@@ -47,13 +47,29 @@ def extract_symptoms_from_sentence(sentence: str, vocab: list, threshold=80):
 
     matched_words, matched_phrases = [], []
 
-    for clause in split_into_clauses(sentence):
+    # Synonym normalization (extend this as needed)
+    synonym_map = {
+        "vomited": "vomiting",
+        "dizzy": "dizziness",
+        "dizziness": "dizziness",
+        "nauseous": "nausea",
+        "headaches": "headache",
+        "coughing": "cough",
+        "fevers": "fever",
+        "palpitations": "palpitation"
+    }
+
+    # Normalize synonyms
+    sentence_lower = sentence.lower()
+    for alt, std in synonym_map.items():
+        sentence_lower = sentence_lower.replace(alt, std)
+
+    for clause in split_into_clauses(sentence_lower):
         if not clause.strip():
             continue
 
         tokens = tokenize(clause)
 
-        # Inline negation check
         if any(tok in NEGATION_WORDS for tok in tokens):
             continue
 
@@ -62,13 +78,11 @@ def extract_symptoms_from_sentence(sentence: str, vocab: list, threshold=80):
         phrase_matches = match_phrases(tokens, phrases, threshold)
         matched_phrases.extend(phrase_matches)
 
-        # Remove phrase parts from matched_words
         for phrase in phrase_matches:
             for part in phrase.split('_'):
                 if part in matched_words:
                     matched_words.remove(part)
 
-    # Deduplicate
     matched_words = list(dict.fromkeys(matched_words))
     matched_phrases = list(dict.fromkeys(matched_phrases))
 

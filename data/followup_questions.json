@@ -1,0 +1,645 @@
+{
+  "abdominal_pain": [
+    "How long have you had abdominal_pain?",
+    "Is your abdominal_pain constant or does it come and go?",
+    "Have you experienced anything else along with the abdominal_pain?"
+  ],
+  "abnormal_menstruation": [
+    "How long have you had abnormal_menstruation?",
+    "Is your abnormal_menstruation constant or does it come and go?",
+    "Have you experienced anything else along with the abnormal_menstruation?"
+  ],
+  "acidity": [
+    "How long have you had acidity?",
+    "Is your acidity constant or does it come and go?",
+    "Have you experienced anything else along with the acidity?"
+  ],
+  "acute_liver_failure": [
+    "How long have you had acute_liver_failure?",
+    "Is your acute_liver_failure constant or does it come and go?",
+    "Have you experienced anything else along with the acute_liver_failure?"
+  ],
+  "altered_sensorium": [
+    "How long have you had altered_sensorium?",
+    "Is your altered_sensorium constant or does it come and go?",
+    "Have you experienced anything else along with the altered_sensorium?"
+  ],
+  "anxiety": [
+    "I have panic/anxiety disorder and was prescribed with 5mg lorazepam. I took one tablet at 8 PM but still l would wake up anxious in the morning.Is it safe to take one more tablet?",
+    "Is it possible that anxiety causes episodes of bradycardia?"
+  ],
+  "back_pain": [
+    "How long have you had back_pain?",
+    "Is your back_pain constant or does it come and go?",
+    "Have you experienced anything else along with the back_pain?"
+  ],
+  "belly_pain": [
+    "How long have you had belly_pain?",
+    "Is your belly_pain constant or does it come and go?",
+    "Have you experienced anything else along with the belly_pain?"
+  ],
+  "blackheads": [
+    "How long have you had blackheads?",
+    "Is your blackheads constant or does it come and go?",
+    "Have you experienced anything else along with the blackheads?"
+  ],
+  "bladder_discomfort": [
+    "How long have you had bladder_discomfort?",
+    "Is your bladder_discomfort constant or does it come and go?",
+    "Have you experienced anything else along with the bladder_discomfort?"
+  ],
+  "blister": [
+    "How long have you had blister?",
+    "Is your blister constant or does it come and go?",
+    "Have you experienced anything else along with the blister?"
+  ],
+  "blood_in_sputum": [
+    "How long have you had blood_in_sputum?",
+    "Is your blood_in_sputum constant or does it come and go?",
+    "Have you experienced anything else along with the blood_in_sputum?"
+  ],
+  "bloody_stool": [
+    "How long have you had bloody_stool?",
+    "Is your bloody_stool constant or does it come and go?",
+    "Have you experienced anything else along with the bloody_stool?"
+  ],
+  "blurred_and_distorted_vision": [
+    "How long have you had blurred_and_distorted_vision?",
+    "Is your blurred_and_distorted_vision constant or does it come and go?",
+    "Have you experienced anything else along with the blurred_and_distorted_vision?"
+  ],
+  "breathlessness": [
+    "How long have you had breathlessness?",
+    "Is your breathlessness constant or does it come and go?",
+    "Have you experienced anything else along with the breathlessness?"
+  ],
+  "brittle_nails": [
+    "How long have you had brittle_nails?",
+    "Is your brittle_nails constant or does it come and go?",
+    "Have you experienced anything else along with the brittle_nails?"
+  ],
+  "bruising": [
+    "How long have you had bruising?",
+    "Is your bruising constant or does it come and go?",
+    "Have you experienced anything else along with the bruising?"
+  ],
+  "burning_micturition": [
+    "How long have you had burning_micturition?",
+    "Is your burning_micturition constant or does it come and go?",
+    "Have you experienced anything else along with the burning_micturition?"
+  ],
+  "chest_pain": [
+    "How long have you had chest_pain?",
+    "Is your chest_pain constant or does it come and go?",
+    "Have you experienced anything else along with the chest_pain?"
+  ],
+  "chills": [
+    "How long have you had chills?",
+    "Is your chills constant or does it come and go?",
+    "Have you experienced anything else along with the chills?"
+  ],
+  "cold_hands_and_feets": [
+    "How long have you had cold_hands_and_feets?",
+    "Is your cold_hands_and_feets constant or does it come and go?",
+    "Have you experienced anything else along with the cold_hands_and_feets?"
+  ],
+  "coma": [
+    "How long have you had coma?",
+    "Is your coma constant or does it come and go?",
+    "Have you experienced anything else along with the coma?"
+  ],
+  "congestion": [
+    "How long have you had congestion?",
+    "Is your congestion constant or does it come and go?",
+    "Have you experienced anything else along with the congestion?"
+  ],
+  "constipation": [
+    "I am suffering from constipation since I was 13. I always have taken medicine for that, but nothing worked, and lately, I had not taken any medication. Do you think there is something wrong with me?"
+  ],
+  "continuous_feel_of_urine": [
+    "How long have you had continuous_feel_of_urine?",
+    "Is your continuous_feel_of_urine constant or does it come and go?",
+    "Have you experienced anything else along with the continuous_feel_of_urine?"
+  ],
+  "continuous_sneezing": [
+    "How long have you had continuous_sneezing?",
+    "Is your continuous_sneezing constant or does it come and go?",
+    "Have you experienced anything else along with the continuous_sneezing?"
+  ],
+  "cough": [
+    "My 4-year-old daughter has a lingering cough for the past two months. Is it true that if the child is not dewormed, symptoms of a cough and wheezing persist?",
+    "I was using a plug-in mosquito repellants for my baby for long, and she often gets cough and cold. Is it because of that?"
+  ],
+  "cramps": [
+    "I am having slight bleeding for past three days along with mild cramps in five weeks of pregnancy. Is it normal or sign of miscarriage?",
+    "I took a pill of 200 mcg yesterday night and two pills of 200 mcg of Mifegest kit today morning and I am having lower back pain and abdominal cramps.So, when will bleeding start?",
+    "Pus cells 8 to 10, my urine RBC is 6 to 8 and now I have the menstrual period. I feel I have a fever and cramps in my left side leg and hips side feel pain little bit and headache. What does it mean?"
+  ],
+  "dark_urine": [
+    "How long have you had dark_urine?",
+    "Is your dark_urine constant or does it come and go?",
+    "Have you experienced anything else along with the dark_urine?"
+  ],
+  "dehydration": [
+    "How long have you had dehydration?",
+    "Is your dehydration constant or does it come and go?",
+    "Have you experienced anything else along with the dehydration?"
+  ],
+  "depression": [
+    "How long have you had depression?",
+    "Is your depression constant or does it come and go?",
+    "Have you experienced anything else along with the depression?"
+  ],
+  "diarrhoea": [
+    "How long have you had diarrhoea?",
+    "Is your diarrhoea constant or does it come and go?",
+    "Have you experienced anything else along with the diarrhoea?"
+  ],
+  "dischromic _patches": [
+    "How long have you had dischromic _patches?",
+    "Is your dischromic _patches constant or does it come and go?",
+    "Have you experienced anything else along with the dischromic _patches?"
+  ],
+  "distention_of_abdomen": [
+    "How long have you had distention_of_abdomen?",
+    "Is your distention_of_abdomen constant or does it come and go?",
+    "Have you experienced anything else along with the distention_of_abdomen?"
+  ],
+  "dizziness": [
+    "How long have you had dizziness?",
+    "Is your dizziness constant or does it come and go?",
+    "Have you experienced anything else along with the dizziness?"
+  ],
+  "drying_and_tingling_lips": [
+    "How long have you had drying_and_tingling_lips?",
+    "Is your drying_and_tingling_lips constant or does it come and go?",
+    "Have you experienced anything else along with the drying_and_tingling_lips?"
+  ],
+  "enlarged_thyroid": [
+    "How long have you had enlarged_thyroid?",
+    "Is your enlarged_thyroid constant or does it come and go?",
+    "Have you experienced anything else along with the enlarged_thyroid?"
+  ],
+  "excessive_hunger": [
+    "How long have you had excessive_hunger?",
+    "Is your excessive_hunger constant or does it come and go?",
+    "Have you experienced anything else along with the excessive_hunger?"
+  ],
+  "extra_marital_contacts": [
+    "How long have you had extra_marital_contacts?",
+    "Is your extra_marital_contacts constant or does it come and go?",
+    "Have you experienced anything else along with the extra_marital_contacts?"
+  ],
+  "family_history": [
+    "How long have you had family_history?",
+    "Is your family_history constant or does it come and go?",
+    "Have you experienced anything else along with the family_history?"
+  ],
+  "fast_heart_rate": [
+    "How long have you had fast_heart_rate?",
+    "Is your fast_heart_rate constant or does it come and go?",
+    "Have you experienced anything else along with the fast_heart_rate?"
+  ],
+  "fatigue": [
+    "How long have you had fatigue?",
+    "Is your fatigue constant or does it come and go?",
+    "Have you experienced anything else along with the fatigue?"
+  ],
+  "fluid_overload": [
+    "How long have you had fluid_overload?",
+    "Is your fluid_overload constant or does it come and go?",
+    "Have you experienced anything else along with the fluid_overload?"
+  ],
+  "foul_smell_of urine": [
+    "How long have you had foul_smell_of urine?",
+    "Is your foul_smell_of urine constant or does it come and go?",
+    "Have you experienced anything else along with the foul_smell_of urine?"
+  ],
+  "headache": [
+    "Pus cells 8 to 10, my urine RBC is 6 to 8 and now I have the menstrual period. I feel I have a fever and cramps in my left side leg and hips side feel pain little bit and headache. What does it mean?"
+  ],
+  "high_fever": [
+    "How long have you had high_fever?",
+    "Is your high_fever constant or does it come and go?",
+    "Have you experienced anything else along with the high_fever?"
+  ],
+  "hip_joint_pain": [
+    "How long have you had hip_joint_pain?",
+    "Is your hip_joint_pain constant or does it come and go?",
+    "Have you experienced anything else along with the hip_joint_pain?"
+  ],
+  "history_of_alcohol_consumption": [
+    "How long have you had history_of_alcohol_consumption?",
+    "Is your history_of_alcohol_consumption constant or does it come and go?",
+    "Have you experienced anything else along with the history_of_alcohol_consumption?"
+  ],
+  "increased_appetite": [
+    "How long have you had increased_appetite?",
+    "Is your increased_appetite constant or does it come and go?",
+    "Have you experienced anything else along with the increased_appetite?"
+  ],
+  "indigestion": [
+    "How long have you had indigestion?",
+    "Is your indigestion constant or does it come and go?",
+    "Have you experienced anything else along with the indigestion?"
+  ],
+  "inflammatory_nails": [
+    "How long have you had inflammatory_nails?",
+    "Is your inflammatory_nails constant or does it come and go?",
+    "Have you experienced anything else along with the inflammatory_nails?"
+  ],
+  "internal_itching": [
+    "How long have you had internal_itching?",
+    "Is your internal_itching constant or does it come and go?",
+    "Have you experienced anything else along with the internal_itching?"
+  ],
+  "irregular_sugar_level": [
+    "How long have you had irregular_sugar_level?",
+    "Is your irregular_sugar_level constant or does it come and go?",
+    "Have you experienced anything else along with the irregular_sugar_level?"
+  ],
+  "irritability": [
+    "How long have you had irritability?",
+    "Is your irritability constant or does it come and go?",
+    "Have you experienced anything else along with the irritability?"
+  ],
+  "irritation_in_anus": [
+    "How long have you had irritation_in_anus?",
+    "Is your irritation_in_anus constant or does it come and go?",
+    "Have you experienced anything else along with the irritation_in_anus?"
+  ],
+  "itching": [
+    "I have been itching on my tip of the penis, which also becomes red due to itch. Is it safe to apply any antifungal cream on the tip of the penis?"
+  ],
+  "joint_pain": [
+    "How long have you had joint_pain?",
+    "Is your joint_pain constant or does it come and go?",
+    "Have you experienced anything else along with the joint_pain?"
+  ],
+  "knee_pain": [
+    "How long have you had knee_pain?",
+    "Is your knee_pain constant or does it come and go?",
+    "Have you experienced anything else along with the knee_pain?"
+  ],
+  "lack_of_concentration": [
+    "How long have you had lack_of_concentration?",
+    "Is your lack_of_concentration constant or does it come and go?",
+    "Have you experienced anything else along with the lack_of_concentration?"
+  ],
+  "lethargy": [
+    "How long have you had lethargy?",
+    "Is your lethargy constant or does it come and go?",
+    "Have you experienced anything else along with the lethargy?"
+  ],
+  "loss_of_appetite": [
+    "How long have you had loss_of_appetite?",
+    "Is your loss_of_appetite constant or does it come and go?",
+    "Have you experienced anything else along with the loss_of_appetite?"
+  ],
+  "loss_of_balance": [
+    "How long have you had loss_of_balance?",
+    "Is your loss_of_balance constant or does it come and go?",
+    "Have you experienced anything else along with the loss_of_balance?"
+  ],
+  "loss_of_smell": [
+    "How long have you had loss_of_smell?",
+    "Is your loss_of_smell constant or does it come and go?",
+    "Have you experienced anything else along with the loss_of_smell?"
+  ],
+  "malaise": [
+    "How long have you had malaise?",
+    "Is your malaise constant or does it come and go?",
+    "Have you experienced anything else along with the malaise?"
+  ],
+  "mild_fever": [
+    "How long have you had mild_fever?",
+    "Is your mild_fever constant or does it come and go?",
+    "Have you experienced anything else along with the mild_fever?"
+  ],
+  "mood_swings": [
+    "How long have you had mood_swings?",
+    "Is your mood_swings constant or does it come and go?",
+    "Have you experienced anything else along with the mood_swings?"
+  ],
+  "movement_stiffness": [
+    "How long have you had movement_stiffness?",
+    "Is your movement_stiffness constant or does it come and go?",
+    "Have you experienced anything else along with the movement_stiffness?"
+  ],
+  "mucoid_sputum": [
+    "How long have you had mucoid_sputum?",
+    "Is your mucoid_sputum constant or does it come and go?",
+    "Have you experienced anything else along with the mucoid_sputum?"
+  ],
+  "muscle_pain": [
+    "How long have you had muscle_pain?",
+    "Is your muscle_pain constant or does it come and go?",
+    "Have you experienced anything else along with the muscle_pain?"
+  ],
+  "muscle_wasting": [
+    "How long have you had muscle_wasting?",
+    "Is your muscle_wasting constant or does it come and go?",
+    "Have you experienced anything else along with the muscle_wasting?"
+  ],
+  "muscle_weakness": [
+    "How long have you had muscle_weakness?",
+    "Is your muscle_weakness constant or does it come and go?",
+    "Have you experienced anything else along with the muscle_weakness?"
+  ],
+  "nausea": [
+    "Have you vomited or just felt sick?",
+    "Is it worse after eating?",
+    "Is the nausea constant or on and off?"
+  ],
+  "neck_pain": [
+    "How long have you had neck_pain?",
+    "Is your neck_pain constant or does it come and go?",
+    "Have you experienced anything else along with the neck_pain?"
+  ],
+  "nodal_skin_eruptions": [
+    "How long have you had nodal_skin_eruptions?",
+    "Is your nodal_skin_eruptions constant or does it come and go?",
+    "Have you experienced anything else along with the nodal_skin_eruptions?"
+  ],
+  "obesity": [
+    "How long have you had obesity?",
+    "Is your obesity constant or does it come and go?",
+    "Have you experienced anything else along with the obesity?"
+  ],
+  "pain_behind_the_eyes": [
+    "How long have you had pain_behind_the_eyes?",
+    "Is your pain_behind_the_eyes constant or does it come and go?",
+    "Have you experienced anything else along with the pain_behind_the_eyes?"
+  ],
+  "pain_during_bowel_movements": [
+    "How long have you had pain_during_bowel_movements?",
+    "Is your pain_during_bowel_movements constant or does it come and go?",
+    "Have you experienced anything else along with the pain_during_bowel_movements?"
+  ],
+  "pain_in_anal_region": [
+    "How long have you had pain_in_anal_region?",
+    "Is your pain_in_anal_region constant or does it come and go?",
+    "Have you experienced anything else along with the pain_in_anal_region?"
+  ],
+  "painful_walking": [
+    "How long have you had painful_walking?",
+    "Is your painful_walking constant or does it come and go?",
+    "Have you experienced anything else along with the painful_walking?"
+  ],
+  "palpitations": [
+    "How is it possible that I got heart palpitations from caffeine use (5.8 mg/kg a day)?"
+  ],
+  "passage_of_gases": [
+    "How long have you had passage_of_gases?",
+    "Is your passage_of_gases constant or does it come and go?",
+    "Have you experienced anything else along with the passage_of_gases?"
+  ],
+  "patches_in_throat": [
+    "How long have you had patches_in_throat?",
+    "Is your patches_in_throat constant or does it come and go?",
+    "Have you experienced anything else along with the patches_in_throat?"
+  ],
+  "phlegm": [
+    "How long have you had phlegm?",
+    "Is your phlegm constant or does it come and go?",
+    "Have you experienced anything else along with the phlegm?"
+  ],
+  "polyuria": [
+    "How long have you had polyuria?",
+    "Is your polyuria constant or does it come and go?",
+    "Have you experienced anything else along with the polyuria?"
+  ],
+  "prominent_veins_on_calf": [
+    "How long have you had prominent_veins_on_calf?",
+    "Is your prominent_veins_on_calf constant or does it come and go?",
+    "Have you experienced anything else along with the prominent_veins_on_calf?"
+  ],
+  "puffy_face_and_eyes": [
+    "How long have you had puffy_face_and_eyes?",
+    "Is your puffy_face_and_eyes constant or does it come and go?",
+    "Have you experienced anything else along with the puffy_face_and_eyes?"
+  ],
+  "pus_filled_pimples": [
+    "How long have you had pus_filled_pimples?",
+    "Is your pus_filled_pimples constant or does it come and go?",
+    "Have you experienced anything else along with the pus_filled_pimples?"
+  ],
+  "receiving_blood_transfusion": [
+    "How long have you had receiving_blood_transfusion?",
+    "Is your receiving_blood_transfusion constant or does it come and go?",
+    "Have you experienced anything else along with the receiving_blood_transfusion?"
+  ],
+  "receiving_unsterile_injections": [
+    "How long have you had receiving_unsterile_injections?",
+    "Is your receiving_unsterile_injections constant or does it come and go?",
+    "Have you experienced anything else along with the receiving_unsterile_injections?"
+  ],
+  "red_sore_around_nose": [
+    "How long have you had red_sore_around_nose?",
+    "Is your red_sore_around_nose constant or does it come and go?",
+    "Have you experienced anything else along with the red_sore_around_nose?"
+  ],
+  "red_spots_over_body": [
+    "How long have you had red_spots_over_body?",
+    "Is your red_spots_over_body constant or does it come and go?",
+    "Have you experienced anything else along with the red_spots_over_body?"
+  ],
+  "redness_of_eyes": [
+    "How long have you had redness_of_eyes?",
+    "Is your redness_of_eyes constant or does it come and go?",
+    "Have you experienced anything else along with the redness_of_eyes?"
+  ],
+  "restlessness": [
+    "How long have you had restlessness?",
+    "Is your restlessness constant or does it come and go?",
+    "Have you experienced anything else along with the restlessness?"
+  ],
+  "runny_nose": [
+    "How long have you had runny_nose?",
+    "Is your runny_nose constant or does it come and go?",
+    "Have you experienced anything else along with the runny_nose?"
+  ],
+  "rusty_sputum": [
+    "How long have you had rusty_sputum?",
+    "Is your rusty_sputum constant or does it come and go?",
+    "Have you experienced anything else along with the rusty_sputum?"
+  ],
+  "scurring": [
+    "How long have you had scurring?",
+    "Is your scurring constant or does it come and go?",
+    "Have you experienced anything else along with the scurring?"
+  ],
+  "shivering": [
+    "How long have you had shivering?",
+    "Is your shivering constant or does it come and go?",
+    "Have you experienced anything else along with the shivering?"
+  ],
+  "silver_like_dusting": [
+    "How long have you had silver_like_dusting?",
+    "Is your silver_like_dusting constant or does it come and go?",
+    "Have you experienced anything else along with the silver_like_dusting?"
+  ],
+  "sinus_pressure": [
+    "How long have you had sinus_pressure?",
+    "Is your sinus_pressure constant or does it come and go?",
+    "Have you experienced anything else along with the sinus_pressure?"
+  ],
+  "skin_peeling": [
+    "How long have you had skin_peeling?",
+    "Is your skin_peeling constant or does it come and go?",
+    "Have you experienced anything else along with the skin_peeling?"
+  ],
+  "skin_rash": [
+    "How long have you had skin_rash?",
+    "Is your skin_rash constant or does it come and go?",
+    "Have you experienced anything else along with the skin_rash?"
+  ],
+  "slurred_speech": [
+    "How long have you had slurred_speech?",
+    "Is your slurred_speech constant or does it come and go?",
+    "Have you experienced anything else along with the slurred_speech?"
+  ],
+  "small_dents_in_nails": [
+    "How long have you had small_dents_in_nails?",
+    "Is your small_dents_in_nails constant or does it come and go?",
+    "Have you experienced anything else along with the small_dents_in_nails?"
+  ],
+  "spinning_movements": [
+    "How long have you had spinning_movements?",
+    "Is your spinning_movements constant or does it come and go?",
+    "Have you experienced anything else along with the spinning_movements?"
+  ],
+  "spotting_ urination": [
+    "How long have you had spotting_ urination?",
+    "Is your spotting_ urination constant or does it come and go?",
+    "Have you experienced anything else along with the spotting_ urination?"
+  ],
+  "stiff_neck": [
+    "How long have you had stiff_neck?",
+    "Is your stiff_neck constant or does it come and go?",
+    "Have you experienced anything else along with the stiff_neck?"
+  ],
+  "stomach_bleeding": [
+    "How long have you had stomach_bleeding?",
+    "Is your stomach_bleeding constant or does it come and go?",
+    "Have you experienced anything else along with the stomach_bleeding?"
+  ],
+  "stomach_pain": [
+    "How long have you had stomach_pain?",
+    "Is your stomach_pain constant or does it come and go?",
+    "Have you experienced anything else along with the stomach_pain?"
+  ],
+  "sunken_eyes": [
+    "How long have you had sunken_eyes?",
+    "Is your sunken_eyes constant or does it come and go?",
+    "Have you experienced anything else along with the sunken_eyes?"
+  ],
+  "sweating": [
+    "How long have you had sweating?",
+    "Is your sweating constant or does it come and go?",
+    "Have you experienced anything else along with the sweating?"
+  ],
+  "swelled_lymph_nodes": [
+    "How long have you had swelled_lymph_nodes?",
+    "Is your swelled_lymph_nodes constant or does it come and go?",
+    "Have you experienced anything else along with the swelled_lymph_nodes?"
+  ],
+  "swelling_joints": [
+    "How long have you had swelling_joints?",
+    "Is your swelling_joints constant or does it come and go?",
+    "Have you experienced anything else along with the swelling_joints?"
+  ],
+  "swelling_of_stomach": [
+    "How long have you had swelling_of_stomach?",
+    "Is your swelling_of_stomach constant or does it come and go?",
+    "Have you experienced anything else along with the swelling_of_stomach?"
+  ],
+  "swollen_blood_vessels": [
+    "How long have you had swollen_blood_vessels?",
+    "Is your swollen_blood_vessels constant or does it come and go?",
+    "Have you experienced anything else along with the swollen_blood_vessels?"
+  ],
+  "swollen_extremeties": [
+    "How long have you had swollen_extremeties?",
+    "Is your swollen_extremeties constant or does it come and go?",
+    "Have you experienced anything else along with the swollen_extremeties?"
+  ],
+  "swollen_legs": [
+    "How long have you had swollen_legs?",
+    "Is your swollen_legs constant or does it come and go?",
+    "Have you experienced anything else along with the swollen_legs?"
+  ],
+  "throat_irritation": [
+    "How long have you had throat_irritation?",
+    "Is your throat_irritation constant or does it come and go?",
+    "Have you experienced anything else along with the throat_irritation?"
+  ],
+  "toxic_look_(typhos)": [
+    "How long have you had toxic_look_(typhos)?",
+    "Is your toxic_look_(typhos) constant or does it come and go?",
+    "Have you experienced anything else along with the toxic_look_(typhos)?"
+  ],
+  "ulcers_on_tongue": [
+    "How long have you had ulcers_on_tongue?",
+    "Is your ulcers_on_tongue constant or does it come and go?",
+    "Have you experienced anything else along with the ulcers_on_tongue?"
+  ],
+  "unsteadiness": [
+    "How long have you had unsteadiness?",
+    "Is your unsteadiness constant or does it come and go?",
+    "Have you experienced anything else along with the unsteadiness?"
+  ],
+  "visual_disturbances": [
+    "How long have you had visual_disturbances?",
+    "Is your visual_disturbances constant or does it come and go?",
+    "Have you experienced anything else along with the visual_disturbances?"
+  ],
+  "vomiting": [
+    "My baby is 10 months old, and he is two months premature. If I feed him with solid food, he does vomiting. Is it not safe for him to feed with solid food?"
+  ],
+  "watering_from_eyes": [
+    "How long have you had watering_from_eyes?",
+    "Is your watering_from_eyes constant or does it come and go?",
+    "Have you experienced anything else along with the watering_from_eyes?"
+  ],
+  "weakness_in_limbs": [
+    "How long have you had weakness_in_limbs?",
+    "Is your weakness_in_limbs constant or does it come and go?",
+    "Have you experienced anything else along with the weakness_in_limbs?"
+  ],
+  "weakness_of_one_body_side": [
+    "How long have you had weakness_of_one_body_side?",
+    "Is your weakness_of_one_body_side constant or does it come and go?",
+    "Have you experienced anything else along with the weakness_of_one_body_side?"
+  ],
+  "weight_gain": [
+    "How long have you had weight_gain?",
+    "Is your weight_gain constant or does it come and go?",
+    "Have you experienced anything else along with the weight_gain?"
+  ],
+  "weight_loss": [
+    "How long have you had weight_loss?",
+    "Is your weight_loss constant or does it come and go?",
+    "Have you experienced anything else along with the weight_loss?"
+  ],
+  "yellow_crust_ooze": [
+    "How long have you had yellow_crust_ooze?",
+    "Is your yellow_crust_ooze constant or does it come and go?",
+    "Have you experienced anything else along with the yellow_crust_ooze?"
+  ],
+  "yellow_urine": [
+    "How long have you had yellow_urine?",
+    "Is your yellow_urine constant or does it come and go?",
+    "Have you experienced anything else along with the yellow_urine?"
+  ],
+  "yellowing_of_eyes": [
+    "How long have you had yellowing_of_eyes?",
+    "Is your yellowing_of_eyes constant or does it come and go?",
+    "Have you experienced anything else along with the yellowing_of_eyes?"
+  ],
+  "yellowish_skin": [
+    "How long have you had yellowish_skin?",
+    "Is your yellowish_skin constant or does it come and go?",
+    "Have you experienced anything else along with the yellowish_skin?"
+  ]
+}
