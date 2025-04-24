@@ -11,6 +11,11 @@ NEGATION_WORDS = {"not","no","never","nothing",
     "shouldn't","shouldnt","wouldn't","wouldnt",
     "haven't","havent","hasn't","hasnt","hadn't","hadnt"}
 
+EXCLUDED_WORDS = {
+    "eating", "sleeping", "talking", "walking", "drinking",
+    "running", "reading", "typing", "sitting", "thinking"
+}
+
 TOKEN_RE = re.compile(r"\b\w+(?:'\w+)?\b")
 
 def split_into_clauses(text: str):
@@ -22,6 +27,8 @@ def tokenize(text: str):
 def match_single_words(tokens: list, single_words: list, threshold=80):
     matches = []
     for tok in tokens:
+        if tok in EXCLUDED_WORDS:
+            continue
         hit = process.extractOne(tok, single_words, scorer=fuzz.ratio)
         if hit and hit[1] >= threshold:
             matches.append(hit[0])
@@ -85,5 +92,7 @@ def extract_symptoms_from_sentence(sentence: str, vocab: list, threshold=80):
 
     matched_words = list(dict.fromkeys(matched_words))
     matched_phrases = list(dict.fromkeys(matched_phrases))
+    all_matches = matched_words + matched_phrases
+    final = [s for s in all_matches if s not in EXCLUDED_WORDS]
 
-    return matched_words + matched_phrases
+    return final

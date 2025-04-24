@@ -10,65 +10,90 @@ def main():
     severity_checker = SymptomSeverityChecker()
     faq_model = FAQChatbot("data/faq_dataset.csv")
 
-    print("🩺 Symptom Checker Chatbot (CLI Mode)")
+    print("Symptom Checker Chatbot (CLI Mode)")
     print("Type 'exit' to quit\n")
 
-    # Store all known symptoms for this entire conversation
     session_symptoms = set()
-
-    # To avoid asking follow-ups repeatedly for the same symptom,
-    # we'll track which symptoms we have already asked about.
     asked_followups_for = set()
 
+    ambiguous_input = ""
+
     while True:
-        user_input = input(" Enter symptoms or ask a question: ").strip()
+        if ambiguous_input:
+            user_input = ambiguous_input
+            ambiguous_input = ""
+        else:
+            user_input = input(" Enter symptoms or ask a question: ").strip()
+
         if user_input.lower() in ['exit', 'quit']:
             break
 
-        # (A) Detect new symptoms from main user input
+        # (A) Detect new symptoms
         new_symptoms = set(extract_symptoms_from_sentence(user_input, retriever.symptom_vocab_list))
 
         if new_symptoms:
-            # Merge into master list
-            session_symptoms |= new_symptoms  # set union
+            session_symptoms |= new_symptoms
             print(f"\n [User Provided New Symptoms] => {new_symptoms}")
             print(f" Current All Symptoms: {session_symptoms}")
 
-            # Run diagnosis & severity, then do follow-ups
-            run_diagnosis_and_followups(
-                session_symptoms, 
-                asked_followups_for, 
-                retriever, 
-                severity_checker, 
+            ambiguous_input = run_diagnosis_and_followups(
+                session_symptoms,
+                asked_followups_for,
+                retriever,
+                severity_checker,
                 faq_model
             )
-        else:
-            # (B) No new symptoms => treat the user input as a FAQ question
-            handle_faq_query(faq_model, user_input)
+            continue
 
-        print("\n(You can continue adding symptoms or ask any question.)\n")
+        # (B) No new symptoms found → clarify intent
+        user_question = user_input.lower()
+        is_question = (
+            "?" in user_question or
+            user_question.startswith(("what", "how", "can", "should", "is", "do", "does", "will", "could"))
+        )
+
+        if is_question:
+            handle_faq_query(faq_model, user_input)
+            continue
+
+        print("\n I didn’t detect any new symptoms.")
+        print("Would you like to:")
+        print("  1.  Add a symptom")
+        print("  2.  Ask a health question")
+        print("  3.  Continue with current symptom list")
+
+        followup_choice = input("\n Please type: add / question / continue: ").strip().lower()
+
+        if followup_choice.startswith("add"):
+            print("\nYou can now enter the symptom you'd like to add.")
+            continue
+        elif followup_choice.startswith("question"):
+            handle_faq_query(faq_model, user_input)
+            continue
+        else:
+            print("\n Continuing with current symptoms...")
+            ambiguous_input = run_diagnosis_and_followups(
+                session_symptoms,
+                asked_followups_for,
+                retriever,
+                severity_checker,
+                faq_model
+            )
+            continue
 
 
 def run_diagnosis_and_followups(
-    session_symptoms: set, 
-    asked_followups_for: set, 
-    retriever, 
-    severity_checker, 
+    session_symptoms: set,
+    asked_followups_for: set,
+    retriever,
+    severity_checker,
     faq_model
-):
-    """
-    1. Runs disease predictions and severity on all known symptoms.
-    2. For each symptom that has *not* yet been asked about,
-       ask follow-up questions.
-    3. If user’s response yields new symptoms, incorporate them
-       and loop again (so we keep diagnosing & updating).
-    """
+) -> str:
     while True:
-        # --- 1) DIAGNOSIS ---
         symptom_list_str = ", ".join(session_symptoms)
         disease_results = retriever.get_disease_predictions(symptom_list_str)
         if not disease_results:
-            print("\n⚠️ No disease predictions found.")
+            print("\n No disease predictions found.")
         else:
             print("\n Current Predicted Conditions (based on all known symptoms):")
             for res in disease_results:
@@ -77,7 +102,6 @@ def run_diagnosis_and_followups(
                     f"[confidence: {res['confidence']}% - {res['confidence_level']}]"
                 )
 
-        # --- 2) SEVERITY ---
         if session_symptoms:
             severity_results = severity_checker.classify_severity(symptom_list_str)
             print("\n Severity Assessment:")
@@ -88,53 +112,39 @@ def run_diagnosis_and_followups(
         else:
             print("\n No known symptoms to assess severity.")
 
-        # --- 3) FOLLOW-UP for each *newly discovered* symptom ---
-        # We'll iterate over *all* session symptoms that we've never asked follow-ups about.
         unasked_symptoms = [s for s in session_symptoms if s not in asked_followups_for]
-
         if not unasked_symptoms:
-            # No new symptoms that we haven't asked about => done for now
             break
 
         for symptom in unasked_symptoms:
             followups = get_followup_questions(symptom)
-            # Mark that we've asked about it, so we don’t repeat in the future
             asked_followups_for.add(symptom)
 
             if not followups:
-                continue  # no follow-up Q for this symptom
+                continue
 
             print(f"\nFollow-up questions for the newly mentioned symptom '{symptom}':")
-            # For simplicity, display them all at once, get a single user response
             for i, q in enumerate(followups, 1):
                 print(f"  {i}. {q}")
 
-            user_answer = input("\n🧍 Your answer to the above follow-up questions or please ask any other question you have: ").strip()
+            user_answer = input("\n Your answer to the above follow-up questions or please ask any other question you have: ").strip()
             if user_answer.lower() in ["exit", "quit"]:
-                # User wants to end chatbot
                 exit(0)
 
-            # 3a) Check if user follow-up reveals *new* symptoms
             newly_found = set(extract_symptoms_from_sentence(user_answer, retriever.symptom_vocab_list))
             if newly_found:
                 print(f"  [New Follow-up Symptoms] => {newly_found}")
                 session_symptoms |= newly_found
                 print(f" Current All Symptoms: {session_symptoms}")
             else:
-                # If no new symptoms => treat that answer as a FAQ query
-                handle_faq_query(faq_model, user_answer)
-                break
-                # (We do *not* break; we keep going for other unasked symptoms)
+                # Return this input to main() for clarification
+                return user_answer
 
-        # After we finish *asking* about all unasked symptoms,
-        # we re-run the loop if we discovered *additional* new
-        # symptoms in these follow-ups. That triggers updated 
-        # diagnosis & severity, plus follow-ups for the newly discovered ones.
         newly_unasked = [s for s in session_symptoms if s not in asked_followups_for]
         if not newly_unasked:
-            # No brand-new symptoms => done for now
             break
-        # Otherwise, we repeat to handle the newly discovered symptom(s).
+
+    return ""  # No ambiguous input to return
 
 
 def handle_faq_query(faq_model, user_input):
@@ -142,7 +152,8 @@ def handle_faq_query(faq_model, user_input):
     if faq_res and faq_res[0]["score"] > 0.5:
         print(f"\nChatbot (FAQ): {faq_res[0]['answer']}")
     else:
-        print("\nChatbot (FAQ): I'm not sure about that. Please try rephrasing or list symptoms.")
+        print("\nChatbot (FAQ): I’m not sure how to answer that.")
+        print("But here’s what I know based on your symptoms so far.")
 
 
 if __name__ == "__main__":
