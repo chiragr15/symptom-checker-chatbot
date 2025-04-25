@@ -19,7 +19,7 @@ EXCLUDED_WORDS = {
 TOKEN_RE = re.compile(r"\b\w+(?:'\w+)?\b")
 
 def split_into_clauses(text: str):
-    return re.split(r"[.;,:!?]", text.lower())
+    return re.split(r"[.;,:!?]|\b(?:but|and)\b", text.lower())
 
 def tokenize(text: str):
     return TOKEN_RE.findall(text)
