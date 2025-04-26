@@ -11,10 +11,15 @@ NEGATION_WORDS = {"not","no","never","nothing",
     "shouldn't","shouldnt","wouldn't","wouldnt",
     "haven't","havent","hasn't","hasnt","hadn't","hadnt"}
 
+EXCLUDED_WORDS = {
+    "eating", "sleeping", "talking", "walking", "drinking",
+    "running", "reading", "typing", "sitting", "thinking"
+}
+
 TOKEN_RE = re.compile(r"\b\w+(?:'\w+)?\b")
 
 def split_into_clauses(text: str):
-    return re.split(r"[.;,:!?]", text.lower())
+    return re.split(r"[.;,:!?]|\b(?:but|and)\b", text.lower())
 
 def tokenize(text: str):
     return TOKEN_RE.findall(text)
@@ -22,6 +27,8 @@ def tokenize(text: str):
 def match_single_words(tokens: list, single_words: list, threshold=80):
     matches = []
     for tok in tokens:
+        if tok in EXCLUDED_WORDS:
+            continue
         hit = process.extractOne(tok, single_words, scorer=fuzz.ratio)
         if hit and hit[1] >= threshold:
             matches.append(hit[0])
@@ -47,13 +54,29 @@ def extract_symptoms_from_sentence(sentence: str, vocab: list, threshold=80):
 
     matched_words, matched_phrases = [], []
 
-    for clause in split_into_clauses(sentence):
+    # Synonym normalization (extend this as needed)
+    synonym_map = {
+        "vomited": "vomiting",
+        "dizzy": "dizziness",
+        "dizziness": "dizziness",
+        "nauseous": "nausea",
+        "headaches": "headache",
+        "coughing": "cough",
+        "fevers": "fever",
+        "palpitations": "palpitation"
+    }
+
+    # Normalize synonyms
+    sentence_lower = sentence.lower()
+    for alt, std in synonym_map.items():
+        sentence_lower = sentence_lower.replace(alt, std)
+
+    for clause in split_into_clauses(sentence_lower):
         if not clause.strip():
             continue
 
         tokens = tokenize(clause)
 
-        # Inline negation check
         if any(tok in NEGATION_WORDS for tok in tokens):
             continue
 
@@ -62,14 +85,14 @@ def extract_symptoms_from_sentence(sentence: str, vocab: list, threshold=80):
         phrase_matches = match_phrases(tokens, phrases, threshold)
         matched_phrases.extend(phrase_matches)
 
-        # Remove phrase parts from matched_words
         for phrase in phrase_matches:
             for part in phrase.split('_'):
                 if part in matched_words:
                     matched_words.remove(part)
 
-    # Deduplicate
     matched_words = list(dict.fromkeys(matched_words))
     matched_phrases = list(dict.fromkeys(matched_phrases))
+    all_matches = matched_words + matched_phrases
+    final = [s for s in all_matches if s not in EXCLUDED_WORDS]
 
-    return matched_words + matched_phrases
+    return final
