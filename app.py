@@ -20,7 +20,7 @@ st.set_page_config(
 @st.cache_resource
 def load_models():
     return {
-        #'retriever': SymptomRetrievalModel(cache_embeddings=False),
+        'retriever': SymptomRetrievalModel(cache_embeddings=False),
         'severity_checker': SymptomSeverityChecker(),
         'faq_model': FAQChatbot("data/faq_dataset.csv")
     }
